@@ -7,7 +7,7 @@
 * [submitTextPost](#submitTextPost)
 ___
 ### I will not be responsible for how you use this wrapper!
-Install: ``npm install reddit.js``
+Install: ``npm install redditwrap.js``
 
 Reddit.js is a promise based library for interacting with Reddit!
 ### Getting started with making a basic post:
