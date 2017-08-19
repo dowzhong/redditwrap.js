@@ -1,5 +1,3 @@
-const reddit = require('./main.js')
-
 
 function formatFriends(data){
   let unformattedList = data.data.children
@@ -15,9 +13,20 @@ function formatFriends(data){
   return friendsArray
 }
 
+
 function formatPosts(data){
-  let formatted = data.data.children[0].data
-  return formatted
+  let posts = data.data.children
+  let formatted
+  if(Array.isArray(posts) == false || posts.length == 1){
+    formatted = posts[0].data
+    return formatted
+  }else{
+    formatted = []
+    for(let i = 0; i < posts.length; i++){
+      formatted.push(posts[i])
+    }
+    return formatted
+  }
 }
 
 

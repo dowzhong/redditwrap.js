@@ -1,0 +1,26 @@
+{
+  "name": "redditwrap.js",
+  "version": "1.0.0",
+  "description": "* [getCurrentUser](#getCurrentUser) * [getFriends](#getFriends) * [login](#login) * [searchPost](*searchPost) * [submitComment](#submitComment) * [submitTextPost](#submitTextPost) ___ ### I will not be responsible for how you use this wrapper! Install: ``npm install redditwrap.js``",
+  "main": "main.js",
+  "dependencies": {
+    "superagent": "^3.5.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cthuluhoop123/redditwrap.js.git"
+  },
+  "keywords": [
+    "reddit"
+  ],
+  "author": "cthuluhoop123",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cthuluhoop123/redditwrap.js/issues"
+  },
+  "homepage": "https://github.com/cthuluhoop123/redditwrap.js#readme"
+}

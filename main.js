@@ -45,6 +45,17 @@ reddit.prototype.getFriends = function(){
 	})
 }
 
+reddit.prototype.getPosts = function(subreddit, sort, count){
+	return new Promise((resolve, reject) =>{
+		request
+			.get('https://www.reddit.com/r/' + subreddit + '/' + sort + '/.json?count=' + count)
+			.end((err, res) =>{
+				if(err) reject(err);
+				resolve(formatter.formatPosts(res.body))
+			})
+	})
+}
+
 reddit.prototype.submitComment = function(parent, comment){
 	let self = this
 	return new Promise((resolve, reject) =>{
@@ -71,12 +82,26 @@ reddit.prototype.submitComment = function(parent, comment){
 reddit.prototype.searchPost = function(id){
 	let self = this
 	return new Promise((resolve, reject) =>{
-		request
-			.get('https://www.reddit.com/by_id/t3_' + id + '.json')
-			.end((err, res) =>{
-				if(err) reject(err);
-				let formatted = formatter.formatPosts(res.body)
-				Object.defineProperty(formatted, 'comment', {
+	request
+		.get('https://www.reddit.com/by_id/t3_' + id + '.json')
+		.end((err, res) =>{
+			if(err) reject(err);
+			let formatted = formatter.formatPosts(res.body)
+			if(Array.isArray(formatted)){
+				for(let i = 0; i < formatted.length; i++){
+					Object.defineProperty(formatted[i], 'comment', {
+					    value: function(comment) {
+								return new Promise((resolve, reject) =>{
+									self.submitComment('t3_' + formatted[i].id, comment)
+										.then(data => resolve(data))
+										.catch(err => reject(err))
+								})
+					    },
+					    enumerable: false
+					})
+				}
+			}else{
+				Object.defineProperty(formatted, 'submitComment', {
 				    value: function(comment) {
 							return new Promise((resolve, reject) =>{
 								self.submitComment('t3_' + formatted.id, comment)
@@ -85,9 +110,10 @@ reddit.prototype.searchPost = function(id){
 							})
 				    },
 				    enumerable: false
-				});
-				resolve(formatted)
-			})
+				})
+			}
+			resolve(formatted)
+		})
 	})
 }
 
@@ -103,7 +129,7 @@ reddit.prototype.searchComment = function(parent, target){
 						resolve(res.body)
 					})
 			})
-			.catch(console.log)
+			.catch(err => reject(err))
 	})
 }
 

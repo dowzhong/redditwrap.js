@@ -1,10 +1,18 @@
 # reddit.js
+
+## Methods
 * [getCurrentUser](#getCurrentUser)
 * [getFriends](#getFriends)
+* [getPosts](#getPosts)
 * [login](#login)
 * [searchPost](*searchPost)
 * [submitComment](#submitComment)
 * [submitTextPost](#submitTextPost)
+
+
+## Types
+
+* [postData](#postData)
 ___
 ### I will not be responsible for how you use this wrapper!
 Install: ``npm install redditwrap.js``
@@ -30,6 +38,8 @@ reddit.submitTextPost('test', 'Hello World!', 'My first text post!')
 ```
 ___
 ## Documentation
+
+## Methods
 <a id="getFriends"></a>
 ### getFriends()
 
@@ -38,6 +48,19 @@ Returns an array of objects of the friends the authenticated user has. Each obje
 __Returns__
 
 * Promise: ``friendsList``
+___
+<a id="getPosts"></a>
+### getPosts(subreddit, [sort])
+
+Get submissions on a subreddit based on ``sort``.
+
+__Arguments__
+
+* ``sort``: One of ``hot``, ``new``, ``rising``, ``controversial``, ``random``, ``top``.
+
+__Returns__
+
+* Promise: ``postData`` OR Array of ``postData``
 ___
 <a id="getCurrentUser"></a>
 ### getCurrentUser()
@@ -69,8 +92,6 @@ __Arguments__
 __Returns__
 
 * Promise: ``postData``
-
-*Note: You can quickly comment on this searched post by attaching ``.comment(text)`` function onto the object, where ``text`` is your comment content.*
 ___
 <a id="submitComment"></a>
 ### submitComment(targetID, comment)
@@ -96,3 +117,74 @@ __Arguments__
 __Returns__
 
 * Promise: ``successData``
+___
+
+## Types
+<a id="postData"></a>
+### postData
+* domain
+* approved_at_utc
+* banned_by
+* media_embed
+* thumbnail_width
+* subreddit
+* selftext_html
+* selftext
+* likes
+* suggested_sort
+* user_reports
+* secure_media
+* link_flair_text
+* id
+* banned_at_utc
+* view_count
+* archived
+* clicked
+* report_reasons
+* title
+* media
+* mod_reports
+* can_mod_post
+* author_flair_text
+* score
+* approved_by
+* over_18
+* hidden
+* preview
+* thumbnail
+* subreddit_id
+* edited
+* link_flair_css_class
+* author_flair_css_class
+* contest_mode
+* gilded
+* downs
+* brand_safe
+* secure_media_embed
+* saved
+* removal_reason
+* post_hint
+* stickied
+* can_gild
+* thumbnail_height
+* parent_whitelist_status
+* name
+* spoiler
+* permalink
+* subreddit_type
+* locked
+* hide_score
+* created
+* url
+* whitelist_status
+* quarantine
+* author
+* created_utc
+* subreddit_name_prefixed
+* ups: 32,
+* num_comments
+* is_self
+* visited
+* num_reports
+* is_video
+* distinguished
