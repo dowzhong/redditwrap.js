@@ -56,6 +56,26 @@ reddit.prototype.getPosts = function(subreddit, sort, count){
 	})
 }
 
+/*RETURNS 400 NOT FOUND
+reddit.prototype.getInbox = function(){
+	let self = this
+	return new Promise((resolve, reject) =>{
+		getToken(self)
+			.then(token =>{
+				self.bearer = token
+				request
+					.get(oauthTarget + 'v1/message/inbox')
+					.set('Authorization', 'bearer ' + self.bearer)
+					.set('Content-Type', 'application/x-www-form-urlencoded')
+					.end((err, res) =>{
+						if(err) reject(err);
+						resolve(res.body)
+					})
+			})
+	})
+}
+*/
+
 reddit.prototype.submitComment = function(parent, comment){
 	let self = this
 	return new Promise((resolve, reject) =>{
@@ -124,6 +144,34 @@ reddit.prototype.searchComment = function(parent, target){
 			.then(data =>{
 				request
 					.get('https://www.reddit.com/r/' + data.data.children.map(u => u.data.subreddit) + '/comments/' + parent + '/_to/' + target +'/.json')
+					.end((err, res) =>{
+						if(err) reject(err);
+						resolve(res.body)
+					})
+			})
+			.catch(err => reject(err))
+	})
+}
+
+reddit.prototype.submitLinkPost = function(subreddit, link, title, resubmit){
+	let self = this
+	return new Promise((resolve, reject) =>{
+		getToken(self)
+			.then(token =>{
+				self.bearer = token
+				request
+					.post(oauthTarget + 'submit')
+					.set('Authorization', 'bearer ' + self.bearer)
+					.set('Content-Type', 'application/x-www-form-urlencoded')
+					.send({
+						api_type: 'json',
+						kind: 'link',
+						resubmit: resubmit || true,
+						sendreplies: true,
+						sr: subreddit,
+						url: link,
+						title: title
+					})
 					.end((err, res) =>{
 						if(err) reject(err);
 						resolve(res.body)

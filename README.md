@@ -7,6 +7,7 @@
 * [login](#login)
 * [searchPost](*searchPost)
 * [submitComment](#submitComment)
+* [submitLinkPost](#submitLinkPost)
 * [submitTextPost](#submitTextPost)
 
 
@@ -103,6 +104,21 @@ __Arguments__
 ``targetID``: The fullname of the target. Please refer to Reddit documentation if you don't know what that is.
 ``comment``: The contents of your comment as a string.
 ___
+<a id="submitLinkPost"></a>
+### submitLinkPost(subreddit, link, title)
+
+Submit a new link to a subreddit.
+
+__Arguments__
+
+* ``subreddit``: The subreddit you'd like to post in.
+* ``link``: The link of the post.
+* ``title``: The title of your post.
+
+__Returns__
+
+* Promise: ``successData``
+___
 <a id="submitTextPost"></a>
 ### submitTextPost(subreddit, title, content)
 
@@ -181,7 +197,7 @@ ___
 * author
 * created_utc
 * subreddit_name_prefixed
-* ups: 32,
+* ups:
 * num_comments
 * is_self
 * visited
