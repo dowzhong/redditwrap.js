@@ -6,9 +6,17 @@
   "dependencies": {
     "superagent": "^3.5.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "bithound": "1.7.0",
+    "codecov": "^2.1.0",
+    "coveralls": "^2.12.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-codecov": "istanbul cover ./node_modules/mocha/bin/_mocha && codecov",
+    "test-travis": "node ./node_modules/istanbul/lib/cli.js cover test/app.js && codecov"
   },
   "repository": {
     "type": "git",
