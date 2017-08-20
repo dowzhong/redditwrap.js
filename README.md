@@ -1,4 +1,9 @@
 # reddit.js
+[![npm](https://img.shields.io/npm/v/redditwrap.js.svg?style=flat-square)](https://www.npmjs.com/package/redditwrap.js)
+[![npm](https://img.shields.io/github/license/mvegter/redditwrap.js.svg?style=flat-square)](https://github.com/mvegter/redditwrap.js/blob/master/LICENSE)
+[![Travis branch](https://img.shields.io/travis/mvegter/redditwrap.js/master.svg?style=flat-square)](https://travis-ci.org/mvegter/redditwrap.js)
+[![Known Vulnerabilities](https://snyk.io/test/github/mvegter/redditwrap.js/badge.svg?style=flat-square)](https://snyk.io/test/github/mvegter/redditwrap.js)
+
 
 ## Methods
 * [getCurrentUser](#getCurrentUser)
@@ -7,7 +12,6 @@
 * [login](#login)
 * [searchPost](*searchPost)
 * [submitComment](#submitComment)
-* [submitLinkPost](#submitLinkPost)
 * [submitTextPost](#submitTextPost)
 
 
@@ -104,21 +108,6 @@ __Arguments__
 ``targetID``: The fullname of the target. Please refer to Reddit documentation if you don't know what that is.
 ``comment``: The contents of your comment as a string.
 ___
-<a id="submitLinkPost"></a>
-### submitLinkPost(subreddit, link, title)
-
-Submit a new link to a subreddit.
-
-__Arguments__
-
-* ``subreddit``: The subreddit you'd like to post in.
-* ``link``: The link of the post.
-* ``title``: The title of your post.
-
-__Returns__
-
-* Promise: ``successData``
-___
 <a id="submitTextPost"></a>
 ### submitTextPost(subreddit, title, content)
 
@@ -197,7 +186,7 @@ ___
 * author
 * created_utc
 * subreddit_name_prefixed
-* ups:
+* ups: 32,
 * num_comments
 * is_self
 * visited

@@ -1,0 +1,23 @@
+sudo: false
+branches:
+  except:
+  - legacy
+  - experimental
+  - dev
+branches:
+  only:
+  - master
+  - stable
+language: node_js
+node_js:
+  - "6"
+cache:
+  directories:
+    - node_modules  
+install:
+  - npm install
+script: 
+  - "npm run-script test-travis"
+after_script: 
+  - "cat ./coverage/lcov.info | ./node_modules/codecov.io/bin/codecov.io.js"
+  - "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"  
