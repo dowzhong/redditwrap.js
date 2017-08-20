@@ -5,6 +5,7 @@ let oauthTarget = 'https://oauth.reddit.com/api/'
 
 let reddit = function(obj){
 	let self = this
+	this.useragent = obj.useragent || ''
 	this.username = obj.username
 	this.password = obj.password
 	this.clientID = obj.clientID
@@ -20,6 +21,7 @@ reddit.prototype.getCurrentUser = function(){
 				request
 					.get(oauthTarget + 'v1/me')
 					.set('Authorization', 'bearer ' + self.bearer)
+					.set('User-Agent', self.useragent)
 					.end((err, res) =>{
 						if(err) reject(err);
 						resolve(res.body)
@@ -37,6 +39,7 @@ reddit.prototype.getFriends = function(){
 				request
 					.get(oauthTarget + 'v1/me/friends')
 					.set('Authorization', 'bearer ' + self.bearer)
+					.set('User-Agent', self.useragent)
 					.end((err, res) =>{
 						if(err) reject(err);
 						resolve(formatter.formatFriends(res.body))
@@ -56,25 +59,27 @@ reddit.prototype.getPosts = function(subreddit, sort, count){
 	})
 }
 
-/*RETURNS 400 NOT FOUND
-reddit.prototype.getInbox = function(){
-	let self = this
-	return new Promise((resolve, reject) =>{
-		getToken(self)
-			.then(token =>{
-				self.bearer = token
-				request
-					.get(oauthTarget + 'v1/message/inbox')
-					.set('Authorization', 'bearer ' + self.bearer)
-					.set('Content-Type', 'application/x-www-form-urlencoded')
-					.end((err, res) =>{
-						if(err) reject(err);
-						resolve(res.body)
-					})
-			})
-	})
-}
-*/
+// reddit.prototype.getInbox = function(){
+// 	let self = this
+// 	return new Promise((resolve, reject) =>{
+// 		getToken(self)
+// 			.then(token =>{
+// 				self.bearer = token
+// 				request
+// 					.get(oauthTarget + 'message/inbox')
+// 					.set('Authorization', 'bearer ' + self.bearer)
+// 					.set('User-Agent', self.useragent)
+// 					.set('Content-Type', 'application/x-www-form-urlencoded')
+// 					.send({
+// 						mark: false
+// 					})
+// 					.end((err, res) =>{
+// 						if(err) reject(err);
+// 						resolve(res.body)
+// 					})
+// 			})
+// 	})
+// }
 
 reddit.prototype.submitComment = function(parent, comment){
 	let self = this
@@ -85,6 +90,7 @@ reddit.prototype.submitComment = function(parent, comment){
 				request
 					.post(oauthTarget + 'comment')
 					.set('Authorization', 'bearer ' + self.bearer)
+					.set('User-Agent', self.useragent)
 					.set('Content-Type', 'application/x-www-form-urlencoded')
 					.send({
 						api_type: 'json',
@@ -162,6 +168,7 @@ reddit.prototype.submitLinkPost = function(subreddit, link, title, resubmit){
 				request
 					.post(oauthTarget + 'submit')
 					.set('Authorization', 'bearer ' + self.bearer)
+					.set('User-Agent', self.useragent)
 					.set('Content-Type', 'application/x-www-form-urlencoded')
 					.send({
 						api_type: 'json',
@@ -190,6 +197,7 @@ reddit.prototype.submitTextPost = function(subreddit, title, content){
 				request
 					.post(oauthTarget + 'submit')
 					.set('Authorization', 'bearer ' + self.bearer)
+					.set('User-Agent', self.useragent)
 					.set('Content-Type', 'application/x-www-form-urlencoded')
 					.send({
 						api_type: 'json',

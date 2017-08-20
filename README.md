@@ -23,6 +23,7 @@ Reddit.js is a promise based library for interacting with Reddit!
 ```js
 const redditjs = require('reddit.js')
 let reddit = new redditjs({
+  useragent: USERAGENT,
   username: USERNAME,
   password: PASSWORD,
   clientID: YOUR-SCRIPT-TYPE-APP-ID,
