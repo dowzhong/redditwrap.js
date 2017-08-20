@@ -1,6 +1,6 @@
 {
   "name": "redditwrap.js",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "* [getCurrentUser](#getCurrentUser) * [getFriends](#getFriends) * [login](#login) * [searchPost](*searchPost) * [submitComment](#submitComment) * [submitTextPost](#submitTextPost) ___ ### I will not be responsible for how you use this wrapper! Install: ``npm install redditwrap.js``",
   "main": "main.js",
   "dependencies": {
