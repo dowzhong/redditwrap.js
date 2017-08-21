@@ -201,5 +201,10 @@ ___
 #### Methods:
 * submitComment(comment)
 
-  ``comment``: The content of your reply.
+   &nbsp;&nbsp;&nbsp;&nbsp;Comment on the returned post.
 
+   &nbsp;&nbsp;&nbsp;&nbsp;``comment``: The content of your reply.
+
+* save()
+
+  &nbsp;&nbsp;&nbsp;&nbsp;Save the returned post.
