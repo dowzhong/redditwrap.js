@@ -6,10 +6,13 @@ let reddit = new redditjs({
   clientSecret: process.env.clientSecret
 })
 
-reddit.submitTextPost('test', 'Hello World!', 'My first text post!')
-  .then(data =>{
-    console.log(data)
-  })
-  .catch(err => {
-    console.log(err)
-  })
+
+reddit.on('ready', () =>{
+  reddit.submitTextPost('test', 'Hello World!', 'My first text post!')
+    .then(data =>{
+      console.log(data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
