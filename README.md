@@ -33,14 +33,15 @@ let reddit = new redditjs({
   clientID: YOUR-SCRIPT-TYPE-APP-ID,
   clientSecret: YOUR-SCRIPT-TYPE-APP-SECRET
 })
-
-reddit.submitTextPost('test', 'Hello World!', 'My first text post!')
-  .then(data =>{
-    console.log(data)
-  })
-  .catch(err => {
-    console.log(err)
-  })
+reddit.on('ready', () =>{
+  reddit.submitTextPost('test', 'Hello World!', 'My first text post!')
+    .then(data =>{
+      console.log(data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+})
 ```
 ___
 ## Documentation
@@ -128,6 +129,8 @@ ___
 ## Types
 <a id="postData"></a>
 ### postData
+
+#### Properties:
 * domain
 * approved_at_utc
 * banned_by
@@ -187,10 +190,16 @@ ___
 * author
 * created_utc
 * subreddit_name_prefixed
-* ups: 32,
+* ups
 * num_comments
 * is_self
 * visited
 * num_reports
 * is_video
 * distinguished
+
+#### Methods:
+* submitComment(comment)
+
+  ``comment``: The content of your reply.
+
