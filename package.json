@@ -1,6 +1,6 @@
 {
   "name": "redditwrap.js",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Unofficial Reddit Library for Node.Js",
   "main": "lib/main.js",
   "dependencies": {
