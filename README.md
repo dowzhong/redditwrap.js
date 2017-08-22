@@ -23,6 +23,7 @@
 ## Types
 
 * [friendsList](#friendsList)
+* [inbox](#inbox)
 * [postData](#postData)
 ___
 ### I will not be responsible for how you use this wrapper!
