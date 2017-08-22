@@ -16,3 +16,7 @@ reddit.on('ready', () =>{
       console.log(err)
     })
 })
+
+reddit.on('message', message =>{
+  message.reply("beep boop!")
+})

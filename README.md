@@ -4,10 +4,15 @@
 [![Travis branch](https://img.shields.io/travis/mvegter/redditwrap.js/master.svg?style=flat-square)](https://travis-ci.org/mvegter/redditwrap.js)
 [![Known Vulnerabilities](https://snyk.io/test/github/mvegter/redditwrap.js/badge.svg?style=flat-square)](https://snyk.io/test/github/mvegter/redditwrap.js)
 
+## Events
+
+* [ready](#readyEvent)
+* [message](#messageEvent)
 
 ## Methods
 * [getCurrentUser](#getCurrentUser)
 * [getFriends](#getFriends)
+* [getInbox](#getInbox)
 * [getPosts](#getPosts)
 * [login](#login)
 * [searchPost](*searchPost)
@@ -17,12 +22,13 @@
 
 ## Types
 
+* [friendsList](#friendsList)
 * [postData](#postData)
 ___
 ### I will not be responsible for how you use this wrapper!
 Install: ``npm install redditwrap.js``
 
-Reddit.js is a promise based library for interacting with Reddit!
+Reddit.js is a promise and event based library for interacting with Reddit!
 ### Getting started with making a basic post:
 ```js
 const redditjs = require('reddit.js')
@@ -42,9 +48,28 @@ reddit.on('ready', () =>{
       console.log(err)
     })
 })
+
+reddit.on('message', message =>{
+  message.reply("beep boop!")
+})
 ```
 ___
 ## Documentation
+
+## Events
+<a id="readyEvent"></a>
+### ready
+
+Emitted when the client is ready.
+___
+<a id="messageEvent"></a>
+### message
+
+Emitted when client receives a new notification in inbox.
+
+__Parameters__
+``message``: An ``inbox`` object.
+___
 
 ## Methods
 <a id="getFriends"></a>
@@ -55,6 +80,19 @@ Returns an array of objects of the friends the authenticated user has. Each obje
 __Returns__
 
 * Promise: ``friendsList``
+___
+<a id='getInbox'></a>
+### getInbox([option])
+
+Returns an array of objects of your mail.
+
+__Arguments__
+
+``option``: A filter. One of ``unread``, ``sent``. Defaults to ``inbox``.
+
+__Returns__
+
+* Promise: ``inbox``
 ___
 <a id="getPosts"></a>
 ### getPosts(subreddit, [sort])
@@ -67,7 +105,7 @@ __Arguments__
 
 __Returns__
 
-* Promise: ``postData`` OR Array of ``postData``
+* Promise: ``postData``
 ___
 <a id="getCurrentUser"></a>
 ### getCurrentUser()
@@ -130,7 +168,7 @@ ___
 <a id="postData"></a>
 ### postData
 
-#### Properties:
+#### Properties
 * domain
 * approved_at_utc
 * banned_by
@@ -198,7 +236,7 @@ ___
 * is_video
 * distinguished
 
-#### Methods:
+#### Methods
 * submitComment(comment)
 
    &nbsp;&nbsp;&nbsp;&nbsp;Comment on the returned post.
@@ -208,3 +246,36 @@ ___
 * save()
 
   &nbsp;&nbsp;&nbsp;&nbsp;Save the returned post.
+
+___
+<a id="friendsList"></a>
+### friendsList
+
+#### Properties
+
+* name
+* id
+* dateAdded
+
+___
+<a id="inbox"></a>
+### inbox
+
+#### Properties
+
+* type
+* subject
+* body
+* created
+* parentId
+* id
+* author
+* subreddit
+
+#### Methods
+
+* reply(text)
+
+  &nbsp;&nbsp;&nbsp;&nbsp;Reply to the target ``inbox`` object.
+
+  &nbsp;&nbsp;&nbsp;&nbsp;``text``: Your reply.
