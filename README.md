@@ -14,6 +14,7 @@
 * [getFriends](#getFriends)
 * [getInbox](#getInbox)
 * [getPosts](#getPosts)
+* [getUser](#getUser)
 * [login](#login)
 * [searchPost](*searchPost)
 * [submitComment](#submitComment)
@@ -25,6 +26,7 @@
 * [friendsList](#friendsList)
 * [inbox](#inbox)
 * [postData](#postData)
+* [userData](#userData)
 ___
 ### I will not be responsible for how you use this wrapper!
 Install: ``npm install redditwrap.js``
@@ -73,6 +75,15 @@ __Parameters__
 ___
 
 ## Methods
+<a id="getCurrentUser"></a>
+### getCurrentUser()
+
+Gets details about the current logged on user.
+
+__Returns__
+
+* Promise: ``userData``
+___
 <a id="getFriends"></a>
 ### getFriends()
 
@@ -108,14 +119,19 @@ __Returns__
 
 * Promise: ``postData``
 ___
-<a id="getCurrentUser"></a>
-### getCurrentUser()
+<a id="getUser"></a>
+### getUser(username)
 
-Gets details about the current logged on user.
+Retrieves information on a user.
+
+__Arguments__
+
+* ``username``: The username of the user.
 
 __Returns__
 
-* Promise: ``userData``
+
+* Promise: ``userData`` object.
 ___
 <a id="login"></a>
 ### login(credentials)
@@ -166,6 +182,39 @@ __Returns__
 ___
 
 ## Types
+<a id="friendsList"></a>
+### friendsList
+
+#### Properties
+
+* username
+* id
+* dateAdded
+
+___
+<a id="inbox"></a>
+### inbox
+
+#### Properties
+
+* type
+* subject
+* body
+* created
+* parentId
+* id
+* author
+* subreddit
+
+#### Methods
+
+* reply(text)
+
+  &nbsp;&nbsp;&nbsp;&nbsp;Reply to the target ``inbox`` object.
+
+  &nbsp;&nbsp;&nbsp;&nbsp;``text``: Your reply.
+
+___
 <a id="postData"></a>
 ### postData
 
@@ -249,34 +298,24 @@ ___
   &nbsp;&nbsp;&nbsp;&nbsp;Save the returned post.
 
 ___
-<a id="friendsList"></a>
-### friendsList
+<a id="userData"></a>
+### userData
 
 #### Properties
 
 * username
 * id
-* dateAdded
-
-___
-<a id="inbox"></a>
-### inbox
-
-#### Properties
-
-* type
-* subject
-* body
-* created
-* parentId
-* id
-* author
+* isFriend
+* joinedAt
+* commentKarma
+* linkKarma
 * subreddit
+* client
 
 #### Methods
+* friend()
 
-* reply(text)
+  &nbsp;&nbsp;&nbsp;&nbsp;Adds the user as friend.
+* unfriend()
 
-  &nbsp;&nbsp;&nbsp;&nbsp;Reply to the target ``inbox`` object.
-
-  &nbsp;&nbsp;&nbsp;&nbsp;``text``: Your reply.
+  &nbsp;&nbsp;&nbsp;&nbsp;Unfriends the user.
