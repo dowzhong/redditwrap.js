@@ -254,7 +254,7 @@ ___
 
 #### Properties
 
-* name
+* username
 * id
 * dateAdded
 
