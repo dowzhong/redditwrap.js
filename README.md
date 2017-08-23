@@ -6,8 +6,9 @@
 
 ## Events
 
-* [ready](#readyEvent)
 * [message](#messageEvent)
+* [ready](#readyEvent)
+* [submission](#submission) 
 
 ## Methods
 * [getCurrentUser](#getCurrentUser)
@@ -60,18 +61,29 @@ ___
 ## Documentation
 
 ## Events
-<a id="readyEvent"></a>
-### ready
-
-Emitted when the client is ready.
-___
 <a id="messageEvent"></a>
 ### message
 
 Emitted when client receives a new notification in inbox.
 
 __Parameters__
-``message``: An ``inbox`` object.
+
+``inbox``
+___
+
+<a id="readyEvent"></a>
+### ready
+
+Emitted when the client is ready.
+___
+
+<a id="submission"></a>
+### submission
+Emitted when there is a new post on reddit. Listen's to all posts.
+
+__Paramaters__
+
+``postData``
 ___
 
 ## Methods
