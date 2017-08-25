@@ -6,6 +6,7 @@
 
 ## Events
 
+* [comment](#commentEvent)
 * [message](#messageEvent)
 * [ready](#readyEvent)
 * [submission](#submission) 
@@ -24,6 +25,7 @@
 
 ## Types
 
+* [commentData](#commentData)
 * [friendsList](#friendsList)
 * [inbox](#inbox)
 * [postData](#postData)
@@ -61,6 +63,16 @@ ___
 ## Documentation
 
 ## Events
+<a id="commentEvent"></a>
+### comment
+
+Emmitted when there is a new comment. Listens to r/all. (Needs a bit of fixing. Some subreddits might not appear for some reason.)
+
+__Parameters__
+
+``commentData``
+___
+
 <a id="messageEvent"></a>
 ### message
 
@@ -194,6 +206,69 @@ __Returns__
 ___
 
 ## Types
+<a id="commentData"></a>
+### commentData
+
+#### Properties
+
+* subreddit_id
+* approved_at_utc
+* edited
+* banned_by
+* removal_reason
+* link_id
+* link_author
+* likes
+* replies
+* user_reports
+* saved
+* id
+* banned_at_utc
+* gilded
+* archived
+* report_reasons
+* author
+* num_comments
+* can_mod_post
+* parent_id
+* score
+* approved_by
+* over_18
+* collapsed
+* body
+* link_title
+* author
+* downs
+* is_submitter
+* collapsed_reason
+* body_html
+* distinguished
+* quarantine
+* can_gild
+* subreddit
+* name
+* score_hidden
+* num_reports
+* link_permalink
+* stickied
+* created
+* author_flair_text
+* link_url
+* created_utc
+* subreddit_name_prefixed
+* controversiality
+* mod_reports
+* subreddit_type
+* ups
+
+#### Methods
+
+* submitComment(comment)
+
+   &nbsp;&nbsp;&nbsp;&nbsp;Reply to the comment.
+
+   &nbsp;&nbsp;&nbsp;&nbsp;``comment``: The content of your reply.
+___
 <a id="friendsList"></a>
 ### friendsList
 
